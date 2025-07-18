@@ -1,0 +1,27 @@
+@RestController
+@RequestMapping("/api/content")
+@RequiredArgsConstructor
+public class ContentController {
+    private final ContentService contentService;
+
+    @PostMapping
+    public ResponseEntity<ContentDTO> create(@RequestBody ContentDTO dto) {
+        return ResponseEntity.ok(contentService.createContent(dto));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ContentDTO>> getAll() {
+        return ResponseEntity.ok(contentService.getAllContent());
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<ContentDTO> update(@PathVariable Long id, @RequestBody ContentDTO dto) {
+        return ResponseEntity.ok(contentService.updateContent(id, dto));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<?> delete(@PathVariable Long id) {
+        contentService.deleteContent(id);
+        return ResponseEntity.ok("Deleted");
+    }
+}
