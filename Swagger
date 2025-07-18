@@ -1,0 +1,8 @@
+@Configuration
+@EnableOpenApi
+public class SwaggerConfig {
+    @Bean
+    public OpenAPI openAPI() {
+        return new OpenAPI().info(new Info().title("CMS API").version("1.0"));
+    }
+}
